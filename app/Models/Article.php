@@ -27,6 +27,6 @@ class Article extends Model
     }
     public function getRouteKeyName()
     {
-        return 'slug'; // Use the appropriate column name
+        return 'slug'; 
     }
 }

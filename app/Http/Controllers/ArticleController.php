@@ -22,7 +22,7 @@ class ArticleController extends Controller
     public function create()
     {
        
-        $categories = Category::all(); // Fetch all categories
+        $categories = Category::all(); 
         return view('articles.create', compact('categories'));
     }
 
@@ -32,14 +32,14 @@ class ArticleController extends Controller
             'title' => 'required',
             'body' => 'required',
             'category_id' => 'required|exists:categories,id',
-            // You can add more validation rules here
+            
         ]);
 
         $article = Article::create([
             'title' => $request->title,
             'body' => $request->body,
             'category_id' => $request->category_id,
-            // 'user_id' => auth()->id(), // Assuming you are using authentication
+            // 'user_id' => auth()->id(), 
             'user_id' => $request->user_id,
             'slug'=> $request->user_id,
         ]);
@@ -69,7 +69,7 @@ class ArticleController extends Controller
             'title' => 'required',
             'body' => 'required',
             'category_id' => 'required|exists:categories,id',
-            // You can add more validation rules here
+            
         ]);
 
         $article->update([
