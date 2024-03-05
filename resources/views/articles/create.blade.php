@@ -2,7 +2,7 @@
 
 @extends('articles.master')
 
-@section('content')
+@section('content1')
     <div class="container">
         <h1>Create New Article</h1>
 

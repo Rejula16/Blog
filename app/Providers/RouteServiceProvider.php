@@ -6,7 +6,10 @@ use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\{Route,Gate};
+use App\Models\Article;
+use App\Policies\ArticlePolicy;
+
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -17,6 +20,12 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
+    protected $policies = [
+        Article::class => ArticlePolicy::class,
+    ];
+
+
+
     public const HOME = '/dashboard';
 
     /**
@@ -36,5 +45,11 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
         });
+
+        // $this->registerPolicies();
+
+        Gate::define('update-article', [ArticlePolicy::class, 'update']);
+        Gate::define('delete-article', [ArticlePolicy::class, 'delete']);
+
     }
 }

@@ -2,7 +2,7 @@
 
 @extends('articles.master')
 
-@section('content')
+@section('content1')
     <h1>Articles</h1>
     <a href="{{ route('articles.create') }}" class="btn btn-primary mb-3">Create New Article</a>
 
@@ -20,7 +20,7 @@
                  
                         <a href="{{ route('articles.show', $article->id) }}" class="btn btn-primary btn-sm">View</a>
                         <a href="{{ route('articles.edit', $article->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                        <input type="submit" class="btn btn-danger btn-sm" value="Delete" />
+                        <input type="submit" class=" btn-sm btn btn-outline-danger" value="Delete" />
                     </form>
                     
                 </li>

@@ -2,7 +2,7 @@
 
 @extends('articles.master')
 
-@section('content')
+@section('content1')
     <h1>{{ $article->title }}</h1>
     <p><strong>Category:</strong> {{ $article->category->name }}</p>
     <p><strong>Author:</strong> {{ $article->user->name }}</p>
