@@ -67,7 +67,8 @@ class ArticleFactory extends Factory
             // $article->save();
 
             // Retrieve random hash tags from the hash_tags table
-            $hashTags = HashTag::inRandomOrder()->limit(3)->pluck('id')->toArray();
+            $randomLimit = rand(1, 4);
+            $hashTags = HashTag::inRandomOrder()->limit($randomLimit )->pluck('id')->toArray();
 
             // Sync the retrieved hash tags with the article
             $article->hashTags()->sync($hashTags);

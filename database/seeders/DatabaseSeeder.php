@@ -1,8 +1,8 @@
 <?php
 
 namespace Database\Seeders;
-use Illuminate\Support\Facades\Hash;
-use App\Models\{User, Category, HashTag, Article,ArticleHashTag};
+// use Illuminate\Support\Facades\Hash;
+
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,14 +13,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-        // User::factory(30)->create();
-        Category::factory(30)->create();
-        HashTag::factory(30)->create();
-        User::factory()
-        ->count(10) // Create 10 users
-        ->has(Article::factory()->forUser()->count(5)) // Each user has 5 articles
-        ->create();
+    
+        $this->call([
+            CategorySeeder::class,
+            HashTagSeeder::class,
+            UserSeeder::class,
+            
+         ]);
+
+
+         // \App\Models\User::factory(10)->create();
         // Article::factory(30)->create();
         // ArticleHashTag::factory(50)->create();
 
