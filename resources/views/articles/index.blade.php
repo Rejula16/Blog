@@ -12,8 +12,16 @@
         <ul>
             @foreach ($articles as $article)
                 <li>
+                    <form method="post" action="{{ route('articles.destroy', $article->id) }}">
+                        @csrf
+                        @method('DELETE')
                     <a href="{{ route('articles.show', $article->id) }}">{{ $article->title }}</a><br>
                     <p>{{ $article->body }}</p>
+                 
+                        <a href="{{ route('articles.show', $article->id) }}" class="btn btn-primary btn-sm">View</a>
+                        <a href="{{ route('articles.edit', $article->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <input type="submit" class="btn btn-danger btn-sm" value="Delete" />
+                    </form>
                     
                 </li>
                 <br>

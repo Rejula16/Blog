@@ -19,9 +19,21 @@ class HashTagFactory extends Factory
 
     public function definition(): array
     {
+
+
+        // Generate a unique hash tag name
+        $hashTag = $this->faker->unique()->word;
+
+        // Ensure that the hash tag does not already exist
+        while (Hashtag::where('name', $hashTag)->exists()) {
+            $hashTag = $this->faker->unique()->word;
+        }
+
         return [
-            'name' => '#' . $this->faker->unique()->word,
-            // Add more attributes as needed
+            'name' => $hashTag,
+            // Add other attributes as needed
         ];
+ 
+
     }
 }

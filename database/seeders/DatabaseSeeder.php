@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
         // User::factory(30)->create();
         // Category::factory(30)->create();
         // HashTag::factory(30)->create();
-        // Article::factory(30)->create();
-        ArticleHashTag::factory(50)->create();
+        Article::factory(30)->create();
+        // ArticleHashTag::factory(50)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Article, Category};
+use App\Models\{Article, Category, HashTag};
 
 use Illuminate\Http\Request;
 
@@ -52,15 +52,17 @@ class ArticleController extends Controller
         return redirect()->route('articles.index')->with('success', 'Article created successfully!');
     }
 
-    public function show($id)
+    public function show(Article $article)
     {
-         $article=Article::find($id);
+        //  $article=Article::find($id);
         return view('articles.show', compact('article'));
     }
 
     public function edit(Article $article)
     {
-        // Return a view to edit the specified article
+        $hashtags=HashTag::all();
+        $categories = Category::all(); 
+        return view('articles.edit', compact('article','categories','hashtags'));
     }
 
     public function update(Request $request, Article $article)
