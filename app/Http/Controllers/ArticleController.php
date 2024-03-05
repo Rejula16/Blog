@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Article\Store;
+use App\Http\Requests\Article\Update;
 use App\Models\{Article, Category, HashTag};
 
 use Illuminate\Http\Request;
@@ -26,21 +28,13 @@ class ArticleController extends Controller
         return view('articles.create', compact('categories'));
     }
 
-    public function store(Request $request)
+    public function store(Store $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'body' => 'required',
-            'category_id' => 'required|exists:categories,id',
-            
-        ]);
-
         $article = Article::create([
             'title' => $request->title,
             'body' => $request->body,
             'category_id' => $request->category_id,
-            // 'user_id' => auth()->id(), 
-            'user_id' => $request->user_id,
+            'user_id' => auth()->id(), 
             'slug'=> $request->user_id,
         ]);
 
@@ -54,7 +48,6 @@ class ArticleController extends Controller
 
     public function show(Article $article)
     {
-        //  $article=Article::find($id);
         return view('articles.show', compact('article'));
     }
 
@@ -66,16 +59,9 @@ class ArticleController extends Controller
         return view('articles.edit', compact('article','categories','hashtags'));
     }
 
-    public function update(Request $request, Article $article)
+    public function update(Update $request, Article $article)
     {
         $this->authorize('update', $article);
-        $request->validate([
-            'title' => 'required',
-            'body' => 'required',
-            'category_id' => 'required|exists:categories,id',
-            
-        ]);
-
         $article->update([
             'title' => $request->title,
             'body' => $request->body,
