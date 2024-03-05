@@ -42,7 +42,7 @@ class ArticleFactory extends Factory
     {
 
         $user = User::inRandomOrder()->first();
-            $category = Category::inRandomOrder()->first();
+        $category = Category::inRandomOrder()->first();
 
         return [
             'title' => $this->faker->sentence,
@@ -73,4 +73,5 @@ class ArticleFactory extends Factory
             $article->hashTags()->sync($hashTags);
         });
     }
+
 }

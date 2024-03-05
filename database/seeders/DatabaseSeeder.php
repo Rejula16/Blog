@@ -15,9 +15,13 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         // User::factory(30)->create();
-        // Category::factory(30)->create();
-        // HashTag::factory(30)->create();
-        Article::factory(30)->create();
+        Category::factory(30)->create();
+        HashTag::factory(30)->create();
+        User::factory()
+        ->count(10) // Create 10 users
+        ->has(Article::factory()->forUser()->count(5)) // Each user has 5 articles
+        ->create();
+        // Article::factory(30)->create();
         // ArticleHashTag::factory(50)->create();
 
         // \App\Models\User::factory()->create([

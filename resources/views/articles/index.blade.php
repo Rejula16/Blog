@@ -3,8 +3,9 @@
 @extends('articles.master')
 
 @section('content1')
-    <h1>Articles</h1>
-    <a href="{{ route('articles.create') }}" class="btn btn-primary mb-3">Create New Article</a>
+    <h1 style="font-size: 36px ;color:rgb(93, 0, 255)">Articles</h1>
+    <br>
+    <a  href="{{ route('articles.create') }}" class="btn btn-primary mb-3">Create New Article</a>
 
     @if ($articles->isEmpty())
         <p>No articles found.</p>
