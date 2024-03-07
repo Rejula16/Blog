@@ -30,7 +30,10 @@
 
             <!-- Page Content -->
             <main>
-                @yield('content')
+                <x-blog-layout>
+                    @yield('content1')
+                </x-blog-layout>
+                {{-- @yield('content') --}}
                 {{-- {{ $slot }} --}}
             </main>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>

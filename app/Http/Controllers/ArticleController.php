@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Article\{Store, Update};
-use App\Http\Controllers\ArticleService;
+use App\Services\ArticleService;
 
 // use Illuminate\Http\Request;
 
@@ -26,7 +26,8 @@ class ArticleController extends Controller
     public function create()
     {
         $categories = $this->articleService->getAllCategories();
-        return view('articles.create', compact('categories'));
+        $hashtags = $this->articleService->getAllHashTags();
+        return view('articles.create', compact('categories','hashtags'));
     }
 
     public function store(Store $request)
@@ -62,7 +63,6 @@ class ArticleController extends Controller
     public function update(Update $request, $id)
     {
         $this->articleService->updateArticle($id, $request->validated());
-
         $article = $this->articleService->getArticleById($id);
         if ($article) {
             if ($request->has('hashtags')) {

@@ -29,7 +29,14 @@
                 </select>
             </div>
 
-            <!-- Add input fields for hash tags if needed -->
+            <div class="form-group">
+                <label for="hashtags">Hashtags</label>
+                <select id="hashtags" class="form-control" name="hashtags[]" multiple required>
+                    @foreach ($hashtags as $hashtag)
+                        <option value="{{ $hashtag->id }}">{{ $hashtag->name }}</option>
+                    @endforeach
+                </select>
+            </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
