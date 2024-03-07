@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Article\{Store, Update};
+use App\Http\Requests\Article\{StoreFormRequest, UpdateFormRequest};
 use App\Services\ArticleService;
 
 // use Illuminate\Http\Request;
@@ -30,7 +30,7 @@ class ArticleController extends Controller
         return view('articles.create', compact('categories','hashtags'));
     }
 
-    public function store(Store $request)
+    public function store(StoreFormRequest $request)
     {
         $article = $this->articleService->createArticle($request->validated());
 
@@ -60,7 +60,7 @@ class ArticleController extends Controller
         return view('articles.edit', compact('article', 'categories','hashtags'));
     }
 
-    public function update(Update $request, $id)
+    public function update(UpdateFormRequest $request, $id)
     {
         $this->articleService->updateArticle($id, $request->validated());
         $article = $this->articleService->getArticleById($id);
